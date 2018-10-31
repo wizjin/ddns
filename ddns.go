@@ -145,7 +145,11 @@ func main() {
 			for _, v := range d.hosts {
 				if v != ip {
 					log.Println("find new ip:", ip)
-					d.updateIP(ip)
+					if err := d.updateIP(ip); err != nil {
+						log.Println("update ip failed:", err.Error())
+					} else {
+						log.Println("update ip success.")
+					}
 					break
 				}
 			}
